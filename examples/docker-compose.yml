@@ -2,7 +2,7 @@ version: '3.5'
 services:
   endlessh:
     container_name: endlessh
-    image: shizunge/endlessh-go:latest
+    image: code.p2x-3yz.us:4567/whale/endlessh-go:latest
     restart: always
     command:
       - -interval_ms=1000
@@ -11,7 +11,7 @@ services:
       - -enable_prometheus
       - -geoip_supplier=ip-api
     networks:
-      - example_network
+      - endless_network
     ports:
       # SSH port
       - 2222:2222
@@ -30,7 +30,7 @@ services:
       - --web.console.templates=/usr/share/prometheus/consoles
       - --web.enable-admin-api
     networks:
-      - example_network
+      - endless_network
     ports:
       - 127.0.0.1:9090:9090
     volumes:
@@ -42,7 +42,7 @@ services:
     container_name: grafana
     restart: always
     networks:
-      - example_network
+      - endless_network
     ports:
       - 127.0.0.1:3000:3000
     environment:
@@ -53,7 +53,7 @@ services:
       - ./grafana-datasource.yml:/etc/grafana/provisioning/datasources/prometheus.yml
 
 networks:
-  example_network:
+  endless_network:
 
 volumes:
   prometheus:
