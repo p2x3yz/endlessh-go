@@ -1,11 +1,11 @@
-image: docker:19.03.12
+image: docker:20.10.12
 
 stages:
   - build
   - push
 
 services:
-  - docker:19.03.12-dind
+  - docker:20.10.12-dind
 
 before_script:
   - echo -n $CI_REGISTRY_TOKEN | docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_REGISTRY
